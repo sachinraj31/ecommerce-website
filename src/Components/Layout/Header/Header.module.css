@@ -14,11 +14,13 @@
   transform: scale(1.1);
 }
 
-.header__summary {
-  background-color: #bce7d9;
-  text-align: center;
-  padding: 4rem;
-  font-weight: bold;
-  font-size: 6rem;
-  font-family: Metal Mania;
+.cartIcon {
+  margin-right: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.cartIcon:hover {
+  border: 0.01px solid #bce7d9;
+  box-shadow: 0 0.5rem 1rem rgba(black, 0.15);
 }

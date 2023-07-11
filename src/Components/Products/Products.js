@@ -49,7 +49,7 @@ const Products = () => {
       <div className="d-flex justify-content-center w-75 m-auto">
         <Row sm={1} md={2} lg={3}>
           {productsArr.map((item) => (
-            <Col className="mb-2">
+            <Col key={item.title} className="mb-2 ">
               <ProductItem
                 title={item.title}
                 price={item.price}
