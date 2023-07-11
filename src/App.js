@@ -1,10 +1,16 @@
-import AvailableProducts from "./Components/Product";
+import React from "react";
+import Header from "./Components/Layout/Header/Header";
+import ProductItem from "./Components/Products/ProductItem";
+import Products from "./Components/Products/Products";
+import Footer from "./Components/Layout/Footer/Footer";
 
 function App() {
   return (
-    <div>
-      <AvailableProducts />
-    </div>
+    <>
+      <Header />
+      <Products />
+      <Footer />
+    </>
   );
 }
 
