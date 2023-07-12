@@ -1,8 +1,16 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import classes from "./ProductItem.module.css";
+import { useContext } from "react";
+import CartContext from "../../store/cart-context";
 
 const ProductItem = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  const addToCartHandler = () => {
+    cartCtx.onAddToCart({ ...props, quantity: 1 });
+  };
+
   return (
     <Card
       className="ms-2 me-2 h-100 shadow-lg border-0"
@@ -26,6 +34,7 @@ const ProductItem = (props) => {
           ${props.price}
         </Card.Text>
         <Card.Link
+          onClick={addToCartHandler}
           className={`${classes.product__button} rounded p-2 fw-bold d-inline-block mt-4 ms-5`}
         >
           ADD TO CART

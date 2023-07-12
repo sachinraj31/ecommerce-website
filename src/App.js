@@ -17,7 +17,7 @@ function App() {
     <CartProvider>
       <Header onCartToggle={cartToggleHandler} />
       {isOpen && <Cart />}
-      {!isOpen && <products />}
+      {!isOpen && <Products />}
       <Footer />
     </CartProvider>
   );
