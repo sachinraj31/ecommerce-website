@@ -7,6 +7,8 @@ const productsArr = [
   {
     title: "Colors",
 
+    id: 1,
+
     price: 100,
 
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
@@ -14,6 +16,8 @@ const productsArr = [
 
   {
     title: "Black and white Colors",
+
+    id: 2,
 
     price: 50,
 
@@ -23,6 +27,8 @@ const productsArr = [
   {
     title: "Yellow and Black Colors",
 
+    id: 3,
+
     price: 70,
 
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
@@ -30,6 +36,8 @@ const productsArr = [
 
   {
     title: "Blue Color",
+
+    id: 4,
 
     price: 100,
 
@@ -49,11 +57,12 @@ const Products = () => {
       <div className="d-flex justify-content-center w-75 m-auto">
         <Row sm={1} md={2} lg={3}>
           {productsArr.map((item) => (
-            <Col key={item.title} className="mb-2 ">
+            <Col key={item.id} className="mb-2 ">
               <ProductItem
                 title={item.title}
                 price={item.price}
                 imageUrl={item.imageUrl}
+                id={item.id}
               />
             </Col>
           ))}

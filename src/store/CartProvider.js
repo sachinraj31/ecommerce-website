@@ -3,21 +3,26 @@ import CartReducer from "./CartReducer";
 import CartContext from "./cart-context";
 
 const CartProvider = (props) => {
-  console.log("Provider");
-
   const [cart, dispatchCart] = useReducer(CartReducer, {
     items: [],
     cartTotalAmount: 0,
   });
 
   const addCartHandler = (item) => {
-    dispatchCart({ type: "ADD_PRODUCTS", item: item });
+    dispatchCart({ type: "ADD_PRODUCT", item: item });
   };
+
+  const removeCartHandler = (id) => {
+    dispatchCart({ type: "REMOVE_PRODUCT", id: id });
+  };
+
   return (
     <CartContext.Provider
       value={{
         items: cart.items,
+        cartTotalAmount: cart.cartTotalAmount,
         onAddToCart: addCartHandler,
+        onRemoveFromCart: removeCartHandler,
       }}
     >
       {props.children}

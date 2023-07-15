@@ -2,8 +2,15 @@ import { Nav, Navbar } from "react-bootstrap";
 import classes from "./Header.module.css";
 import cartIcon from "../../../assets/icons/cart.svg";
 import logo from "../../../assets/icons/logo-no-background.png";
+import { useContext } from "react";
+import CartContext from "../../../store/cart-context";
 
 const Header = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  let totalCartItem = 0;
+  cartCtx.items.forEach((item) => (totalCartItem += item.quantity));
+
   const cartHandler = () => {
     props.onCartToggle();
   };
@@ -31,9 +38,10 @@ const Header = (props) => {
         <div
           style={{ height: "2rem" }}
           onClick={cartHandler}
-          className={classes.cartIcon}
+          className={`d-flex ${classes.cartIcon}`}
         >
           <img className="h-100 w-100" src={cartIcon} alt="shopping cart" />
+          <h4 className="ms-2 text-primary">{totalCartItem}</h4>
         </div>
       </Navbar>
     </header>

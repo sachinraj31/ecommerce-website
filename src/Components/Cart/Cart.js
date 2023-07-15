@@ -15,6 +15,16 @@ const Cart = () => {
         Shopping Cart
       </h1>
 
+      <Container className="rounded p-4 mb-4 shadow">
+        <Row className="align-items-center">
+          <Col>
+            <h2 className="fw-bold">Total Amount: </h2>
+          </Col>
+          <Col>
+            <h2 className="fw-bold">$ {cartCtx.cartTotalAmount}</h2>
+          </Col>
+        </Row>
+      </Container>
       <Container sm={2} md={3}>
         <Row>
           <Col>
@@ -31,10 +41,11 @@ const Cart = () => {
         {cartCtx.items.map((product) => {
           return (
             <CartItem
-              key={product.title}
+              key={product.id}
               quantity={product.quantity}
               price={product.price}
               imageUrl={product.imageUrl}
+              id={product.id}
             />
           );
         })}
