@@ -2,6 +2,9 @@ import React from "react";
 import ProductItem from "./ProductItem";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+import Loader from "../UI/Loader";
 
 const productsArr = [
   {
@@ -46,8 +49,26 @@ const productsArr = [
 ];
 
 const Products = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const fetchMoviesHandler = async () => {
+    setIsLoading(true);
+    await fetch("https://swapi.dev/api/films");
+
+    setIsLoading(false);
+  };
+
+  const spinnerHandler = () => {
+    setIsLoading(false);
+  };
+
   return (
     <>
+      {isLoading && (
+        <div onClick={spinnerHandler}>
+          <Loader />
+        </div>
+      )}
+      <Button onClick={fetchMoviesHandler}>Fetch Movies</Button>
       <h3
         style={{ fontFamily: "Metal Mania" }}
         className="text-center fw-bold fs-1 mt-4 mb-4"

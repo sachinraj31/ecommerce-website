@@ -32,24 +32,37 @@ const Header = (props) => {
           />
         </div>
         <Nav className="ms-5">
-          <NavLink to="/home" className={classes.header__link}>
+          <NavLink
+            to="/home"
+            activeClassName={classes.header__link_active}
+            className={classes.header__link}
+          >
             Home
           </NavLink>
-          <NavLink to="/store" className={classes.header__link}>
+          <NavLink
+            activeClassName={classes.header__link_active}
+            to="/store"
+            className={classes.header__link}
+          >
             Store
           </NavLink>
-          <NavLink to="/about" className={classes.header__link}>
+          <NavLink
+            activeClassName={classes.header__link_active}
+            to="/about"
+            className={classes.header__link}
+          >
             About
           </NavLink>
         </Nav>
-        <div
+        <NavLink
+          activeClassName={classes.header__link_active}
+          to="/shopping_cart"
           style={{ height: "2rem" }}
-          onClick={cartHandler}
           className={`d-flex ${classes.cartIcon}`}
         >
           <img className="h-100 w-100" src={cartIcon} alt="shopping cart" />
           <h4 className="ms-2 text-primary">{totalCartItem}</h4>
-        </div>
+        </NavLink>
       </Navbar>
     </header>
   );

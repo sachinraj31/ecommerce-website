@@ -14,24 +14,17 @@ import Store from "./pages/Store/Store";
 function App() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const cartToggleHandler = () => {
-    setIsOpen((prev) => !prev);
-  };
-
   return (
     <CartProvider>
-      <Header onCartToggle={cartToggleHandler} />
-      {isOpen && <Cart />}
-      {!isOpen && (
-        <>
-          <Routes>
-            <Route path="/shopping_cart" element={<Cart />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/store" element={<Store />} />
-            <Route path="/about" element={<About />} />{" "}
-          </Routes>
-        </>
-      )}
+      <Header />
+
+      <Routes>
+        <Route path="/shopping_cart" element={<Cart />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/store" element={<Store />} />
+        <Route path="/about" element={<About />} />{" "}
+      </Routes>
+
       <Footer />
     </CartProvider>
   );

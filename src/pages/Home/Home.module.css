@@ -1,0 +1,14 @@
+.header__summary {
+  background-color: #bce7d9;
+  text-align: center;
+  padding: 4rem;
+  font-weight: bold;
+  font-size: 6rem;
+  font-family: Metal Mania;
+}
+
+.App {
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
