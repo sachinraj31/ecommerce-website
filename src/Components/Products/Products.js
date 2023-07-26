@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "react-bootstrap";
 import Loader from "../UI/Loader/Loader";
 import ProductList from "./ProductList";
@@ -51,7 +51,7 @@ const productsArr = [
 const Products = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [timeToken, setTimeToken] = useState(null);
-  async function fetchMoviesHandler() {
+  const fetchMoviesHandler = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -59,6 +59,7 @@ const Products = () => {
 
       const response = await fetch("https://swapi.dev/api/film");
       const data = await response.json();
+      console.log(data);
 
       setIsLoading(false);
     } catch (error) {
@@ -70,7 +71,11 @@ const Products = () => {
 
       setTimeToken(timeId);
     }
-  }
+  }, [timeToken]);
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
 
   const spinnerHandler = () => {
     setIsLoading(false);
