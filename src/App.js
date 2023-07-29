@@ -10,6 +10,7 @@ import { Route, Routes } from "react-router-dom";
 import About from "./pages/About/About";
 import Home from "./pages/Home/Home";
 import Store from "./pages/Store/Store";
+import Contact from "./pages/Contact/Contact";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +23,8 @@ function App() {
         <Route path="/shopping_cart" element={<Cart />} />
         <Route path="/home" element={<Home />} />
         <Route path="/store" element={<Store />} />
-        <Route path="/about" element={<About />} />{" "}
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
 
       <Footer />

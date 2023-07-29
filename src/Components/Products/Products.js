@@ -50,39 +50,9 @@ const productsArr = [
 
 const Products = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [timeToken, setTimeToken] = useState(null);
-  const fetchMoviesHandler = useCallback(async () => {
-    try {
-      setIsLoading(true);
-
-      if (timeToken !== null) return;
-
-      const response = await fetch("https://swapi.dev/api/film");
-      const data = await response.json();
-      console.log(data);
-
-      setIsLoading(false);
-    } catch (error) {
-      console.log("Something went wrong ....Retrying");
-
-      const timeId = setTimeout(() => {
-        fetchMoviesHandler();
-      }, 3000);
-
-      setTimeToken(timeId);
-    }
-  }, [timeToken]);
-
-  useEffect(() => {
-    fetchMoviesHandler();
-  }, [fetchMoviesHandler]);
 
   const spinnerHandler = () => {
     setIsLoading(false);
-  };
-
-  const cancelFetchHandler = () => {
-    clearTimeout(timeToken);
   };
 
   return (
@@ -91,13 +61,10 @@ const Products = () => {
         <div className={classes.overlay}>
           <div onClick={spinnerHandler}>
             <Loader message="loading..." />
-            <Button onClick={cancelFetchHandler} variant="danger">
-              Cancel fetch request
-            </Button>
           </div>
         </div>
       )}
-      <Button onClick={fetchMoviesHandler}>Fetch Movies</Button>
+
       <ProductList title="Music" products={productsArr} />
     </>
   );
