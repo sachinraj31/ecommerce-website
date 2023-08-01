@@ -11,6 +11,7 @@ import About from "./pages/About/About";
 import Home from "./pages/Home/Home";
 import Store from "./pages/Store/Store";
 import Contact from "./pages/Contact/Contact";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +26,7 @@ function App() {
         <Route path="/store" element={<Store />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/store/:productID" element={<ProductDetails />} />
       </Routes>
 
       <Footer />
