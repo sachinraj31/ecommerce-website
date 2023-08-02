@@ -4,16 +4,20 @@ import cartIcon from "../../../assets/icons/cart.svg";
 import logo from "../../../assets/icons/logo-no-background.png";
 import { useContext } from "react";
 import CartContext from "../../../store/cart-context";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import AuthContext from "../../../store/auth-context";
 
 const Header = (props) => {
   const cartCtx = useContext(CartContext);
+  const authCtx = useContext(AuthContext);
+  const history = useNavigate();
 
   let totalCartItem = 0;
   cartCtx.items.forEach((item) => (totalCartItem += item.quantity));
 
-  const cartHandler = () => {
-    props.onCartToggle();
+  const logoutHandler = () => {
+    authCtx.onLogout();
+    history.replace("/home");
   };
 
   return (
@@ -33,43 +37,69 @@ const Header = (props) => {
         </div>
         <Nav className="ms-5">
           <NavLink
+            exact
             to="/home"
             activeClassName={classes.header__link_active}
             className={classes.header__link}
           >
             Home
           </NavLink>
+
+          {authCtx.isLoggedIn && (
+            <NavLink
+              exact
+              activeClassName={classes.header__link_active}
+              to="/store"
+              className={classes.header__link}
+            >
+              Store
+            </NavLink>
+          )}
           <NavLink
-            activeClassName={classes.header__link_active}
-            to="/store"
-            className={classes.header__link}
-          >
-            Store
-          </NavLink>
-          <NavLink
+            exact
             activeClassName={classes.header__link_active}
             to="/about"
             className={classes.header__link}
           >
             About
           </NavLink>
-          <NavLink
-            activeClassName={classes.header__link_active}
-            to="/contact"
-            className={classes.header__link}
-          >
-            Contact
-          </NavLink>
+
+          {authCtx.isLoggedIn && (
+            <NavLink
+              exact
+              activeClassName={classes.header__link_active}
+              to="/contact"
+              className={classes.header__link}
+            >
+              Contact
+            </NavLink>
+          )}
         </Nav>
-        <NavLink
-          activeClassName={classes.header__link_active}
-          to="/shopping_cart"
-          style={{ height: "2rem" }}
-          className={`d-flex ${classes.cartIcon}`}
-        >
-          <img className="h-100 w-100" src={cartIcon} alt="shopping cart" />
-          <h4 className="ms-2 text-primary">{totalCartItem}</h4>
-        </NavLink>
+
+        {!authCtx.isLoggedIn && (
+          <NavLink to="/auth" className="me-5">
+            Login
+          </NavLink>
+        )}
+
+        {authCtx.isLoggedIn && (
+          <div className="d-flex">
+            <NavLink
+              activeClassName={classes.header__link_active}
+              to="/shopping_cart"
+              style={{ height: "2rem" }}
+              className={`d-flex ${classes.cartIcon}`}
+            >
+              <img className="h-100 w-100" src={cartIcon} alt="shopping cart" />
+              <h4 className="ms-2 text-primary">{totalCartItem}</h4>
+            </NavLink>
+            <div className="me-5">
+              <NavLink onClick={logoutHandler} to="/">
+                Logout
+              </NavLink>
+            </div>
+          </div>
+        )}
       </Navbar>
     </header>
   );
