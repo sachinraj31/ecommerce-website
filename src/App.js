@@ -14,6 +14,7 @@ import Contact from "./pages/Contact/Contact";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Auth from "./pages/Auth/Auth";
 import AuthContext from "./store/auth-context";
+import Welcome from "./pages/Welcome/Welcome";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -21,14 +22,12 @@ function App() {
   return (
     <CartProvider>
       <Header />
-
       <Routes>
-        <Route path="/shopping_cart" element={<Cart />} />
+        <Route path="/" element={<Welcome />} />
+
         <Route exact path="/home" element={<Navigate to="/home" />} />
-        <Route exact path="/home" element={<Home />} />
 
         <Route exact path="/about" element={<About />} />
-        <Route exact path="/contact" element={<Contact />} />
       </Routes>
 
       {authCtx.isLoggedIn && (
